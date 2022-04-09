@@ -2,11 +2,10 @@ import React,{useState} from 'react';
 import {  useNavigate } from 'react-router-dom';
 import Logo from '../../olx-logo.png';
 import './Signup.css';
-import {app,db} from "../../firebase/config"
+import {db} from "../../firebase/config"
 import { addDoc, collection} from 'firebase/firestore'
 
 import {getAuth,
-signInWithEmailAndPassword,
 createUserWithEmailAndPassword
 } from 'firebase/auth'
 

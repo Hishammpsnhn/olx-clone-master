@@ -3,17 +3,19 @@ import React,{useState} from 'react';
 import { getAuth,signInWithEmailAndPassword} from 'firebase/auth'
 import Logo from '../../olx-logo.png';
 import './Login.css';
+import {useNavigate} from 'react-router-dom'
 
 function Login() {
   const [email,setEmail] = useState ('')
   const [password,setPassword] = useState('')
 const auth = getAuth()
+const navigate = useNavigate()
 
 const handlelogin=(e)=>{
   e.preventDefault()
   signInWithEmailAndPassword(auth,email,password)
-  .then((response)=>{
-    console.log(response.user)
+  .then(()=>{
+    navigate('/')
     })
   .catch((err)=>{
     alert(err.message)
