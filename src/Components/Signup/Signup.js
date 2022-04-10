@@ -22,7 +22,6 @@ const handleSubmit=(e)=>{
   createUserWithEmailAndPassword(auth,email,password)
   .then((response)=>{
     console.log(response.user)
-    
       const userRef = collection(db,"users")
       addDoc(userRef,{
         id:response.user.uid,
@@ -30,6 +29,7 @@ const handleSubmit=(e)=>{
         phone:phoneno
 
       })
+      
       .then(()=>{
         navigate('/login')
       })

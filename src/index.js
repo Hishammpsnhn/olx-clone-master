@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { BrowserRouter } from "react-router-dom"
+import  Context  from './store/Context'
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
-
-    document.getElementById('root'));
+        <Context>
+            <App />
+        </Context>
+    , document.getElementById('root'));
