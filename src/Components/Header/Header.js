@@ -6,7 +6,7 @@ import Arrow from '../../assets/Arrow';
 import SellButton from '../../assets/SellButton';
 import SellButtonPlus from '../../assets/SellButtonPlus';
 import { AuthContext } from '../../store/Context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 function Header() {
 
@@ -52,13 +52,16 @@ function Header() {
             Logout
           </span>
         }
-        <div className="sellMenu">
-          <SellButton></SellButton>
-          <div className="sellMenuContent">
-            <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+
+          <div className="sellMenu">
+            <SellButton></SellButton>
+            <div className="sellMenuContent"
+              onClick={()=> user ? navigate('/create') : navigate('/login')}>
+              <SellButtonPlus></SellButtonPlus>
+              <span>SELL</span>
+            </div>
           </div>
-        </div>
+
       </div>
     </div>
   );

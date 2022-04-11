@@ -1,28 +1,28 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
-import { getAuth,signInWithEmailAndPassword} from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import Logo from '../../olx-logo.png';
 import './Login.css';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function Login() {
-  const [email,setEmail] = useState ('')
-  const [password,setPassword] = useState('')
-const auth = getAuth()
-const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const auth = getAuth()
+  const navigate = useNavigate()
 
-const handlelogin=(e)=>{
-  e.preventDefault()
-  signInWithEmailAndPassword(auth,email,password)
-  .then(()=>{
-    
-    navigate('/')
-    })
-  .catch((err)=>{
-    alert(err.message)
-  })
-  
-}
+  const handlelogin = (e) => {
+    e.preventDefault()
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+
+        navigate('/')
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
+
+  }
 
   return (
     <div>
@@ -37,7 +37,7 @@ const handlelogin=(e)=>{
             id="fname"
             name="email"
             value={email}
-            onChange={(e)=> setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <br />
           <label htmlFor="lname">Password</label>
@@ -48,13 +48,15 @@ const handlelogin=(e)=>{
             id="lname"
             name="password"
             value={password}
-            onChange={(e)=> setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <br />
           <br />
           <button>Login</button>
         </form>
-        <a>Signup</a>
+        
+          <a onClick={()=> navigate("/signup")}>Signup</a>
+        
       </div>
     </div>
   );

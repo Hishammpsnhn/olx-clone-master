@@ -104,7 +104,8 @@ const handleSubmit=(e)=>{
           <br />
           <button>Signup</button>
         </form>
-        <a>Login</a>
+
+        <a onClick={()=> navigate('/login') }>Login</a>
       </div>
     </div>
   );

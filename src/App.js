@@ -14,33 +14,37 @@ import {
 import Home from './Pages/Home';
 import { AuthContext } from './store/Context';
 import Create from './Pages/Create'
-
-
+import View from './Pages/ViewPost'
+import ViewPost from './Pages/ViewPost';
+import Post from './store/PostContext';
 
 function App() {
   const auth = getAuth()
 
- 
-  
+
+
   const { user, setUser } = useContext(AuthContext)
   useEffect(() => {
     onAuthStateChanged(auth, (data) => {
-        setUser(data)
+      setUser(data)
     })
-    console.log (user)
+    console.log(user)
 
   })
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/create" element={<Create />} />
+      <Post>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/create" element={<Create />} />
+            <Route path="/view" element={<ViewPost />} />
 
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </Post>
     </div>
   );
 }
