@@ -26,8 +26,8 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (data) => {
         setUser(data)
-      console.log(user)
     })
+    console.log (user)
 
   })
   return (

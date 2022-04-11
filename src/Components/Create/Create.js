@@ -2,6 +2,8 @@ import React, { useState, Fragment, useContext } from 'react';
 import './Create.css';
 import Header from '../Header/Header';
 
+import { useNavigate } from 'react-router-dom';
+
 import { addDoc, collection } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { app, db, storage } from '../../firebase/config';
@@ -9,8 +11,10 @@ import { app, db, storage } from '../../firebase/config';
 import { AuthContext } from '../../store/Context';
 
 const Create = () => {
-
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext)
+  console.log(user)
+  
   const [name, setName] = useState('')
   const [catagory, setCatagory] = useState('')
   const [price, setPrice] = useState('')
@@ -31,25 +35,21 @@ const Create = () => {
         console.log(error.message);
       },
       () => {
-        setName('')
-        setPrice('')
-        setCatagory('')
+        
 
         getDownloadURL(uploadTask.snapshot.ref)
         .then((url) =>{
-          console.log(url)
           const articleRef = collection(db ,"products");
           addDoc(articleRef,{
             name:name,
             catagory:catagory,
             price:price,
             imageUrl:url,
-          
+            user:user.uid,
             cratedAt:date.toDateString(),
           })
-          console.log(url)
           .then(()=>{
-            console.log("success fullru")
+              navigate('/')
           })
           .catch((err)=>{
             console.log("something an error")

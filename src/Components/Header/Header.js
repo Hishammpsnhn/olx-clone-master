@@ -11,7 +11,6 @@ import { getAuth, signOut } from 'firebase/auth';
 function Header() {
 
   const { user, setUser } = useContext(AuthContext)
-  console.log(user)
   const auth = getAuth()
   const navigate = useNavigate()
   return (
