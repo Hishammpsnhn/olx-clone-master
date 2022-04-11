@@ -1,4 +1,4 @@
-import React,{useEffect,useContext} from 'react';
+import React, { useEffect, useContext } from 'react';
 import './App.css';
 import Signup from './Pages/Signup'
 import Login from './Pages/Login'
@@ -7,9 +7,10 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import {getAuth,
-  createUserWithEmailAndPassword,onAuthStateChanged
-  } from 'firebase/auth'
+import {
+  getAuth,
+  createUserWithEmailAndPassword, onAuthStateChanged, updateProfile
+} from 'firebase/auth'
 import Home from './Pages/Home';
 import { AuthContext } from './store/Context';
 import Create from './Pages/Create'
@@ -18,15 +19,18 @@ import Create from './Pages/Create'
 
 function App() {
   const auth = getAuth()
-  const {user,setUser} = useContext(AuthContext)
-  useEffect(()=>{
-   onAuthStateChanged(auth,(data)=>{
-   setUser("name")
-   console.log(auth)
- })
+
  
-  },)
-  return(
+  
+  const { user, setUser } = useContext(AuthContext)
+  useEffect(() => {
+    onAuthStateChanged(auth, (data) => {
+        setUser(data)
+      console.log(user)
+    })
+
+  })
+  return (
     <div>
       <BrowserRouter>
         <Routes>

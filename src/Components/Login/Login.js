@@ -15,6 +15,7 @@ const handlelogin=(e)=>{
   e.preventDefault()
   signInWithEmailAndPassword(auth,email,password)
   .then(()=>{
+    
     navigate('/')
     })
   .catch((err)=>{

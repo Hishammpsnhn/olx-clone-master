@@ -6,7 +6,8 @@ import {db} from "../../firebase/config"
 import { addDoc, collection} from 'firebase/firestore'
 
 import {getAuth,
-createUserWithEmailAndPassword
+createUserWithEmailAndPassword,
+updateProfile
 } from 'firebase/auth'
 
 export default function Signup() {
@@ -17,21 +18,30 @@ export default function Signup() {
 
   const auth = getAuth();
   const navigate = useNavigate()
+
+  
 const handleSubmit=(e)=>{
+
   e.preventDefault()
   createUserWithEmailAndPassword(auth,email,password)
-  .then((response)=>{
-    console.log(response.user)
-      const userRef = collection(db,"users")
-      addDoc(userRef,{
-        id:response.user.uid,
-        username:username,
-        phone:phoneno
+  .then((result)=>{
 
-      })
-      
-      .then(()=>{
+    updateProfile(auth.currentUser,{
+      displayName:username
+    }).then(()=>{
+
+     const userRef = collection(db,"users")
+     addDoc(userRef,{
+       id:result.user.uid,
+       username:username,
+       phone:phoneno
+       
+     })
+    })
+    
+    .then(()=>{
         navigate('/login')
+       
       })
     })
   
