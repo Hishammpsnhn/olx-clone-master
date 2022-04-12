@@ -8,7 +8,6 @@ import './Post.css';
 
 function Posts() {
 const {postDetails,setPostDetails} = useContext(PostContext)
-console.log (postDetails)
   const [product, setProduct] = useState([])
  const navigate = useNavigate()
   useEffect(() => {
