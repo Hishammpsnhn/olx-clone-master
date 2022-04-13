@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext,useState } from 'react';
 import './Header.css';
 import OlxLogo from '../../assets/OlxLogo';
 import Search from '../../assets/Search';
@@ -8,10 +8,28 @@ import SellButtonPlus from '../../assets/SellButtonPlus';
 import { AuthContext } from '../../store/Context';
 import { useNavigate,Link } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
+import { SearchContext } from '../../store/SearchContext';
+import { ProductContext } from '../../store/FpostContext';
 function Header() {
 
-  const { user, setUser } = useContext(AuthContext)
-  const auth = getAuth()
+  const {product,setProduct}= useContext(ProductContext)
+console.log(product)
+ 
+ const searchSubmit=()=>{
+
+  setProduct(product.filter(value=>value.name.includes(searching)))
+
+ 
+}
+
+const {searching,setSearching} = useContext(SearchContext)
+const { user, setUser } = useContext(AuthContext)
+const handlechange= (e)=>{
+  const eventt = e.target.value
+  setSearching(eventt)
+ 
+}
+const auth = getAuth()
   const navigate = useNavigate()
   return (
     <div className="headerParentDiv">
@@ -29,9 +47,11 @@ function Header() {
             <input
               type="text"
               placeholder="Find car,mobile phone and more..."
+              value={searching}
+              onChange={handlechange}
             />
           </div>
-          <div className="searchAction">
+          <div className="searchAction" onClick={searchSubmit}>
             <Search color="#ffffff"></Search>
           </div>
         </div>

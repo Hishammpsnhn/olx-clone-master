@@ -17,7 +17,8 @@ import Create from './Pages/Create'
 import View from './Pages/ViewPost'
 import ViewPost from './Pages/ViewPost';
 import Post from './store/PostContext';
-
+import Search from './store/SearchContext'
+import Button from './store/FpostContext'
 function App() {
   const auth = getAuth()
 
@@ -28,23 +29,26 @@ function App() {
     onAuthStateChanged(auth, (data) => {
       setUser(data)
     })
-    console.log(user)
 
   })
   return (
     <div>
-      <Post>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/view" element={<ViewPost />} />
+      <Button>
+      <Search>
+        <Post>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/create" element={<Create />} />
+                <Route path="/view" element={<ViewPost />} />
 
-          </Routes>
-        </BrowserRouter>
-      </Post>
+              </Routes>
+            </BrowserRouter>
+        </Post>
+      </Search>
+      </Button>
     </div>
   );
 }

@@ -1,15 +1,24 @@
 import { collection, doc, onSnapshot, query } from 'firebase/firestore';
-import React, { useEffect, useState ,useContext} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Heart from '../../assets/Heart';
 import { db } from '../../firebase/config';
+import { ProductContext } from '../../store/FpostContext';
 import { PostContext } from '../../store/PostContext';
+import { SearchContext } from '../../store/SearchContext';
 import './Post.css';
 
 function Posts() {
-const {postDetails,setPostDetails} = useContext(PostContext)
-  const [product, setProduct] = useState([])
- const navigate = useNavigate()
+  const { searching, setSearching } = useContext(SearchContext)
+  const {product,setProduct}= useContext(ProductContext)
+
+  const { postDetails, setPostDetails } = useContext(PostContext)
+  //const [product, setProduct] = useState([])
+ //const newff =  product.filter(value=>value.name.includes(searching)) 
+  //const oldff = product
+
+ 
+  const navigate = useNavigate()
   useEffect(() => {
     const productRef = collection(db, "products")
     const q = query(productRef)
@@ -19,8 +28,10 @@ const {postDetails,setPostDetails} = useContext(PostContext)
         ...doc.data(),
       }));
       setProduct(products)
+      
     })
-  }, [])
+  }, [searching])
+ 
   return (
     <div className="postParentDiv">
       <div className="moreView">
@@ -29,15 +40,16 @@ const {postDetails,setPostDetails} = useContext(PostContext)
           <span>View more</span>
         </div>
         <div className="cards">
+
           {
-            product.map(product => {
+           product.map(product => {
+
               return (
                 <div className="card"
-                onClick={()=>{
-                  setPostDetails(product)
-                  console.log(product)
-                  navigate('/view')
-                }}
+                  onClick={() => {
+                    setPostDetails(product)
+                    navigate('/view')
+                  }}
                 >
                   <div className="favorite">
                     <Heart></Heart>
