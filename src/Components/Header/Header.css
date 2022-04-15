@@ -12,11 +12,22 @@
   justify-content: space-between;
   align-items: center;
 }
+.parant{
+  height: 100%;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    background: #fff;
+    padding: 0 8px;
+    box-sizing: border-box;
+    border: 2px solid #002f34;
+    border-radius: 4px;
+}
 
 .placeSearch {
   width: 16em;
-  height: 48px;
   display: flex;
+  height: 48px;
   align-items: center;
   padding: 0 8px;
   border: 2px solid #002f34;

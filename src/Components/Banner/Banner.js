@@ -5,6 +5,7 @@ import Arrow from '../../assets/Arrow'
 function Banner() {
   return (
     <div className="bannerParentDiv">
+     
       <div className="bannerChildDiv">
         <div className="menuBar">
           <div className="categoryMenu">

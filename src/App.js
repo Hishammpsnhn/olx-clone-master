@@ -19,6 +19,7 @@ import ViewPost from './Pages/ViewPost';
 import Post from './store/PostContext';
 import Search from './store/SearchContext'
 import Button from './store/FpostContext'
+import { Place } from './store/PlaceContext';
 function App() {
   const auth = getAuth()
 
@@ -33,22 +34,24 @@ function App() {
   })
   return (
     <div>
-      <Button>
-      <Search>
-        <Post>
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/create" element={<Create />} />
-                <Route path="/view" element={<ViewPost />} />
+      <Place>
+        <Button>
+          <Search>
+            <Post>
+              <BrowserRouter>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/create" element={<Create />} />
+                  <Route path="/view" element={<ViewPost />} />
 
-              </Routes>
-            </BrowserRouter>
-        </Post>
-      </Search>
-      </Button>
+                </Routes>
+              </BrowserRouter>
+            </Post>
+          </Search>
+        </Button>
+      </Place>
     </div>
   );
 }
